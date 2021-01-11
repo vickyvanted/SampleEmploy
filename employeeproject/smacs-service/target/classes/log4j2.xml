@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration>
+	<Appenders>
+		<RollingFile name="SmacsServiceLogAppender"
+			fileName="D:\opt\linkeddots\workspace\connected3m\integration2\smacs-service\logs\smacs-service.log"
+			filePattern="D:\opt\linkeddots\workspace\connected3m\integration2\smacs-service\logs\smacs-service.log-%d{dd-MM-yyyy}-%i.log.gz" ignoreExceptions="false">
+			<Policies>
+				<TimeBasedTriggeringPolicy />
+				<SizeBasedTriggeringPolicy size="20 MB"/>
+			</Policies>
+			<PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n" />
+		</RollingFile>
+	</Appenders>
+	<Loggers>
+		<Logger name="com.linkeddots.smacs" level="debug" additivity="false">
+			<AppenderRef ref="SmacsServiceLogAppender" />
+		</Logger>
+	</Loggers>
+</Configuration>

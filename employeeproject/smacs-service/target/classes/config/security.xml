@@ -1,0 +1,47 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:spring-security="http://www.springframework.org/schema/security"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+            http://www.springframework.org/schema/beans/spring-beans.xsd
+            http://www.springframework.org/schema/security
+            http://www.springframework.org/schema/security/spring-security.xsd">
+
+	<bean id="accessDecisionManager"
+		class="org.springframework.security.access.vote.AffirmativeBased">
+		<constructor-arg name="decisionVoters">
+			<list>
+				<bean class="org.springframework.security.access.vote.RoleVoter" />
+			</list>
+		</constructor-arg>
+		<property name="allowIfAllAbstainDecisions" value="true" />
+	</bean>
+	
+	<!--  -->
+	<bean id="userDetailsService" class="com.linkeddots.smacs.service.auth.CustomUserDetailsService">
+	</bean>
+	
+	<bean id="encoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder">
+		<constructor-arg name="strength" value="11" />
+	</bean>
+
+	<spring-security:authentication-manager
+		alias="authenticationManager" >
+		<spring-security:authentication-provider user-service-ref="userDetailsService" >
+		  <!--  <spring-security:password-encoder hash="bcrypt" />  --> 
+		</spring-security:authentication-provider>
+	</spring-security:authentication-manager>
+
+	
+<!-- 
+	<spring-security:user-service id="userDetailsService">
+		<spring-security:user name="APIConfigurator"
+			password="APIConfigurator" authorities="ROLE_CONFIGURATOR" />
+		<spring-security:user name="LDUser" password="LDUser"
+			authorities="ROLE_LDUser" />
+		<spring-security:user name="admin" password="admin"
+			authorities="ROLE_ADMIN" />
+		<spring-security:user name="APIMonitor" password="APIMonitor"
+			authorities="ROLE_APIMONITOR" />
+	</spring-security:user-service>
+ -->
+</beans>

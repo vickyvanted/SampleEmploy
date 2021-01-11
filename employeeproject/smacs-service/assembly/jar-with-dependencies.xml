@@ -1,0 +1,67 @@
+<assembly
+	xmlns="http://maven.apache.org/plugins/maven-assembly-plugin/assembly/1.1.3"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/plugins/maven-assembly-plugin/assembly/1.1.3 http://maven.apache.org/xsd/assembly-1.1.3.xsd">
+	<id>exec</id>
+
+	<formats>
+		<format>zip</format>
+	</formats>
+
+	<includeBaseDirectory>false</includeBaseDirectory>
+
+	<dependencySets>
+		<dependencySet>
+			<outputDirectory>lib</outputDirectory>
+			<useProjectArtifact>true</useProjectArtifact>
+			<unpack>false</unpack>
+		</dependencySet>
+	</dependencySets>
+
+	<fileSets>
+		<fileSet>
+			<useDefaultExcludes>true</useDefaultExcludes>
+			<outputDirectory>bin</outputDirectory>
+			<directory>src/shell</directory>
+			<includes>
+				<include>**/*.*</include>
+			</includes>
+			<fileMode>777</fileMode>
+			<filtered>true</filtered>
+		</fileSet>
+		<fileSet>
+			<useDefaultExcludes>true</useDefaultExcludes>
+			<outputDirectory>cer</outputDirectory>
+			<directory>src/cer</directory>
+			<includes>
+				<include>*/**</include>
+			</includes>
+		</fileSet>
+		<fileSet>
+			<useDefaultExcludes>true</useDefaultExcludes>
+			<outputDirectory>log</outputDirectory>
+			<directory>src/shell</directory>
+			<excludes>
+				<exclude>*/**</exclude>
+			</excludes>
+		</fileSet>
+		<fileSet>
+			<useDefaultExcludes>true</useDefaultExcludes>
+			<outputDirectory>bin</outputDirectory>
+			<directory>bin</directory>
+			<includes>
+				<include>*/**</include>
+			</includes>
+			<filtered>true</filtered>
+		</fileSet>
+		<fileSet>
+			<useDefaultExcludes>true</useDefaultExcludes>
+			<outputDirectory>conf</outputDirectory>
+			<directory>conf</directory>
+			<includes>
+				<include>*/**</include>
+			</includes>
+			<filtered>true</filtered>
+		</fileSet>
+	</fileSets>
+</assembly>
